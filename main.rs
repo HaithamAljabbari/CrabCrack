@@ -12,19 +12,29 @@ use ripemd::{Ripemd128, Ripemd160, Ripemd256, Ripemd320};
 use scrypt::{scrypt, Params};
 use argon2::{Argon2, PasswordHash, PasswordVerifier};
 
+
 #[derive(Parser, Debug)]
-#[clap(about, version, author)]
+#[clap(
+    about,
+    version,
+    author,
+    group(
+        clap::ArgGroup::new("hash_input")
+            .args(&["hash", "hash_file"])  
+            .required(true)
+    )
+)]
 struct Args {
-    #[clap(short = 'H', long, conflicts_with = "hash_file")]
+  
+    #[clap(short = 'H', long)]
     hash: Option<String>,
 
     #[clap(long = "hash-file", conflicts_with = "hash")]
     hash_file: Option<String>,
 
-    #[clap(short, long)]
+    #[clap(short, long, required = true)]
     wordlist: String,
 }
-
 fn handle_scrypt(password: &str, hash: &str) -> bool {
     let parts: Vec<&str> = hash.split('$').filter(|s| !s.is_empty()).collect();
     if parts.len() != 6 || parts[0] != "s2" {
@@ -86,13 +96,11 @@ fn decrypt_hash(hash: &str, hash_type: &str, password_list: &str) {
             _ => {
                 let password_bytes = password.as_bytes();
                 let password_hash = match hash_type {
-                    // MD Family
+              
                     "MD5" => format!("{:x}", Md5::digest(password_bytes)),
                     
-                    // SHA-1
                     "SHA-1" => format!("{:x}", Sha1::digest(password_bytes)),
-                    
-                    // SHA-2 Family
+              
                     "SHA-224" => format!("{:x}", Sha224::digest(password_bytes)),
                     "SHA-256" => format!("{:x}", Sha256::digest(password_bytes)),
                     "SHA-384" => format!("{:x}", Sha384::digest(password_bytes)),
@@ -100,13 +108,11 @@ fn decrypt_hash(hash: &str, hash_type: &str, password_list: &str) {
                     "SHA-512/224" => format!("{:x}", Sha512_224::digest(password_bytes)),
                     "SHA-512/256" => format!("{:x}", Sha512_256::digest(password_bytes)),
                     
-                    // SHA-3 Family
                     "SHA3-224" => format!("{:x}", Sha3_224::digest(password_bytes)),
                     "SHA3-256" => format!("{:x}", Sha3_256::digest(password_bytes)),
                     "SHA3-384" => format!("{:x}", Sha3_384::digest(password_bytes)),
                     "SHA3-512" => format!("{:x}", Sha3_512::digest(password_bytes)),
                     
-                    // RIPEMD Family
                     "RIPEMD-128" => format!("{:x}", Ripemd128::digest(password_bytes)),
                     "RIPEMD-160" => format!("{:x}", Ripemd160::digest(password_bytes)),
                     "RIPEMD-256" => format!("{:x}", Ripemd256::digest(password_bytes)),
