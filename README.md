@@ -4,10 +4,15 @@ crabcrack is a hash cracking tool written in the Rust Programming Language
 
 <b>Command Example</b>
 ```
-./CrabCrack --hash 098f6bcd4621d373cade4e832627b4f6 --wordlist rockyou.txt
+./crabcrack --hash 098f6bcd4621d373cade4e832627b4f6 --wordlist rockyou.txt
 or
-./CrabCrack --hash-file 098f6bcd4621d373cade4e832627b4f6 --wordlist rockyou.txt
+./crabcrack --hash-file 098f6bcd4621d373cade4e832627b4f6 --wordlist rockyou.txt
 ```
+librarys to add
+```
+cargo add sha1 sha2 sha3 md5 ripemd scrypt argon2 figlet_rs clap bcrypt
+```
+
 
 | Algorithm Family    | Specific Algorithms                     | Example Hash                                                                 |
 |---------------------|-----------------------------------------|------------------------------------------------------------------------------|
