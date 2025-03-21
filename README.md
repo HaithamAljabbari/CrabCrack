@@ -1,5 +1,4 @@
 # CrabCrack
-<h1>CrabCrack</h1>
 
 CrabCrack is a hash cracking tool written in the Rust Programming Language
 
