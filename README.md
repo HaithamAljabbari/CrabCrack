@@ -14,7 +14,7 @@ librarys to add
 cargo add sha1 sha2 sha3 md5 ripemd scrypt argon2 figlet_rs clap bcrypt
 ```
 
-<h3>supported algorithms</h3>
+<h2>supported algorithms</h2>
 
 | Algorithm Family    | Specific Algorithms                     | Example Hash                                                                 |
 |---------------------|-----------------------------------------|------------------------------------------------------------------------------|
