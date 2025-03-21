@@ -1,10 +1,12 @@
 # CrabCrack
 
-CrabCrack is a hash cracking tool written in the Rust Programming Language
+crabcrack is a hash cracking tool written in the Rust Programming Language
 
 <b>Command Example</b>
 ```
 ./CrabCrack --hash 098f6bcd4621d373cade4e832627b4f6 --wordlist rockyou.txt
+or
+./CrabCrack --hash-file 098f6bcd4621d373cade4e832627b4f6 --wordlist rockyou.txt
 ```
 
 | Algorithm Family    | Specific Algorithms                     | Example Hash                                                                 |
