@@ -5,7 +5,8 @@ crabcrack is a hash cracking tool written in the Rust Programming Language
 <b>Command Example</b>
 ```
 ./crabcrack --hash 098f6bcd4621d373cade4e832627b4f6 --wordlist rockyou.txt
-or
+```
+```
 ./crabcrack --hash-file 098f6bcd4621d373cade4e832627b4f6 --wordlist rockyou.txt
 ```
 librarys to add
